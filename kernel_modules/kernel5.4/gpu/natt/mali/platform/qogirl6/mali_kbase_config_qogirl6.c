@@ -368,6 +368,12 @@ static inline void mali_freq_init(struct device *dev)
 	//T606: GPLL max freq is 650M
 	//T616: GPLL max freq is 750M
 	// GPLL max freq is 850M
+
+	//.   T616 by suslic
+	//T616 Overclock GPLL max freq is 850M
+	//разгоняем гпу
+	//убираем удаление высоких частот
+	
 	if (!strcmp(auto_efuse, "T606") || !strcmp(auto_efuse, "T612"))
 	{
 		//Modify 850M to 650M
@@ -385,9 +391,10 @@ static inline void mali_freq_init(struct device *dev)
 	else if (!strcmp(auto_efuse, "T616"))
 	{
 		//Modify 850M to 750M
-		gpu_dvfs_ctx.freq_list[gpu_dvfs_ctx.freq_list_len-1].freq = T616_GPLL_FREQ / FREQ_KHZ;
+		//выставляем для проверки 768
+		gpu_dvfs_ctx.freq_list[gpu_dvfs_ctx.freq_list_len-1].freq = GPU_768M_FREQ / FREQ_KHZ;
 
-		//remove 768M
+		//remove 768M //это удалет лишнее пока что
 		memcpy(&gpu_dvfs_ctx.freq_list[gpu_dvfs_ctx.freq_list_len-2],
 			&gpu_dvfs_ctx.freq_list[gpu_dvfs_ctx.freq_list_len-1],
 			sizeof(struct gpu_freq_info));
@@ -405,6 +412,8 @@ static inline void mali_freq_init(struct device *dev)
 		}
 		else if (!strcmp(auto_efuse, "T616"))
 		{
+			//напряжение.пока оставим
+			
 			//BIN2 TT 750M:0.8125v-Gear:3
 			//0.85v，812.5mv/3.125mv/step = 260step， 272的16进制为0x104
 			regmap_update_bits(gpu_dvfs_ctx.dvfs_voltage_value1.regmap_ptr, gpu_dvfs_ctx.dvfs_voltage_value1.args[0], gpu_dvfs_ctx.dvfs_voltage_value1.args[1], 0x104);
@@ -424,7 +433,7 @@ static inline void mali_freq_init(struct device *dev)
 	gpu_dvfs_ctx.cur_index = i;
 	gpu_dvfs_ctx.freq_cur = gpu_dvfs_ctx.freq_default;
 	gpu_dvfs_ctx.cur_voltage = gpu_dvfs_ctx.freq_cur->volt;
-}
+} можно
 
 static inline void mali_power_on(void)
 {
@@ -500,6 +509,7 @@ static inline void mali_clock_on(void)
 	else if (!strcmp(auto_efuse, "T616"))
 	{
 		//T616: GPLL max freq is 750M
+		//пока что максимум 768
 		clk_set_rate(gpu_dvfs_ctx.freq_list[gpu_dvfs_ctx.freq_list_len-1].clk_src, (unsigned long)gpu_dvfs_ctx.freq_list[gpu_dvfs_ctx.freq_list_len-1].freq * FREQ_KHZ);
 
 		if (1 == gpu_dvfs_ctx.gpu_binning)
