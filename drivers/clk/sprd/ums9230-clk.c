@@ -248,7 +248,7 @@ static struct sprd_clk_desc ums9230_g3_pll_desc = {
 
 /* pll at gc */
 static SPRD_PLL_FW_NAME(twpll, "twpll", "ext-26m", 0x0, 3,
-			itable, f_pll, 240, 1000, 1000, 1, 750000000);
+			itable, f_pll, 240, 1000, 1000, 1, 800000000);
 static CLK_FIXED_FACTOR_HW(twpll_768m, "twpll-768m", &twpll.common.hw,
 			   2, 1, 0);
 static CLK_FIXED_FACTOR_HW(twpll_384m, "twpll-384m", &twpll.common.hw,
