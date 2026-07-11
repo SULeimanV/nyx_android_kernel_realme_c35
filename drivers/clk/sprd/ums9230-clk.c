@@ -309,7 +309,7 @@ static CLK_FIXED_FACTOR_HW(isppll_78m, "isppll-78m", &isppll.common.hw,
 			   12, 1, 0);
 
 static SPRD_PLL_HW(gpll, "gpll", &gpll_gate.common.hw, 0x48, 3,
-		   itable, f_pll, 240, 1000, 1000, 1, 1200000000);
+		   itable, f_pll, 240, 1000, 1000, 1, 500000000);
 static CLK_FIXED_FACTOR_HW(gpll_42m5, "gpll-42m5", &gpll.common.hw,
 			   20, 1, 0);
 
