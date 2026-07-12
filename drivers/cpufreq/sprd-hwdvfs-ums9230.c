@@ -249,13 +249,13 @@ static struct mpll_index_tbl ums9230_mpll_index_tbl[MPLL_NUM] = {
 			{
 				.icp = GENREGVALSET(0xbc, 0, 0x7, 4),
 				.postdiv = GENREGVALSET(0xbc, 3, 0x1, 0),
-				.n = GENREGVALSET(0xbc, 4, 0x7ff, 0x46),
+				.n = GENREGVALSET(0xbc, 4, 0x7ff, 0x4d),
 			},
 			/* MPLL0 Index6 */
 			{
 				.icp = GENREGVALSET(0xc0, 0, 0x7, 4),
 				.postdiv = GENREGVALSET(0xc0, 3, 0x1, 0),
-				.n = GENREGVALSET(0xc0, 4, 0x7ff, 0x4b),
+				.n = GENREGVALSET(0xc0, 4, 0x7ff, 0x4d),
 			},
 			/* MPLL0 Index7 */
 			{
@@ -308,7 +308,7 @@ static struct mpll_index_tbl ums9230_mpll_index_tbl[MPLL_NUM] = {
 			{
 				.icp = GENREGVALSET(0x90, 0, 0x7, 4),
 				.postdiv = GENREGVALSET(0x90, 3, 0x1, 0),
-				.n = GENREGVALSET(0x90, 4, 0x7ff, 0x4b),
+				.n = GENREGVALSET(0x90, 4, 0x7ff, 0x4d),
 			},
 			/* MPLL1 Index7 */
 			{
@@ -361,13 +361,13 @@ static struct mpll_index_tbl ums9230_mpll_index_tbl[MPLL_NUM] = {
 			{
 				.icp = GENREGVALSET(0x104, 0, 0x7, 1),
 				.postdiv = GENREGVALSET(0x104, 3, 0x1, 0),
-				.n = GENREGVALSET(0x104, 4, 0x7ff, 0x34),
+				.n = GENREGVALSET(0x104, 4, 0x7ff, 0x36),
 			},
 			/* MPLL2 Index7 */
 			{
 				.icp = GENREGVALSET(0x108, 0, 0x7, 1),
 				.postdiv = GENREGVALSET(0x108, 3, 0x1, 0),
-				.n = GENREGVALSET(0x108, 4, 0x7ff, 0x34),
+				.n = GENREGVALSET(0x108, 4, 0x7ff, 0x36),
 			},
 		},
 	},
