@@ -314,7 +314,7 @@ static struct mpll_index_tbl ums9230_mpll_index_tbl[MPLL_NUM] = {
 			{
 				.icp = GENREGVALSET(0x94, 0, 0x7, 5),
 				.postdiv = GENREGVALSET(0x94, 3, 0x1, 0),
-				.n = GENREGVALSET(0x94, 4, 0x7ff, 0x4d),
+				.n = GENREGVALSET(0x94, 4, 0x7ff, 0x52),
 			},
 		},
 	},
