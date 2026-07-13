@@ -377,6 +377,20 @@ jobs:
           name: ${{ env.KERNEL_NAME }}-${{ env.BUILD_DATE }}-Output
           path: ${{ env.OUT_DIR }}/arch/${{ env.ARCH }}/boot/
           retention-days: 7
+          
+      - name: 📦 Upload Kernel Modules Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: kernel-modules-${{ env.KERNEL_DEVICE }}-${{ env.BUILD_DATE }}
+          path: |
+            ${{ env.OUT_DIR }}/**/*.ko
+          compression-level: 9
+          retention-days: 7
+
+
+      
+
+      
 
       - name: ⏰ Pack Anykernel3
         if: ${{ env.USE_ANYKERNEL3 == 'true' }}
