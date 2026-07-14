@@ -3730,6 +3730,30 @@ static int sprd_codec_soc_probe(struct snd_soc_component *codec)
 		return ret;
 	}
 
+
+	/* Вставьте этот блок внутрь вашей функции probe */
+{
+	int das_mask;
+	int das_val;
+	int das_ret;
+
+	// 1. Создаем маску для битов 4:3 (чтобы сбросить их старое значение)
+	das_mask = BIT_RG_AUD_DAS_MIX_SEL(0x3);
+
+	// 2. Указываем нужное значение (0 - L+R, 1 - L*2, 2 - R*2, 3 - ZERO)
+	das_val = BIT_RG_AUD_DAS_MIX_SEL(1); 
+
+	// 3. Прямая атомарная запись в регистр
+	das_ret = snd_soc_component_update_bits(codec, SOC_REG(AUD_CFGA_ANA_ET2), das_mask, das_val);
+	if (das_ret < 0) {
+		dev_err(codec->dev, "ASoC: Failed to write DAS Input Mux in probe: %d\n", das_ret);
+		return das_ret;
+	}
+	
+	dev_info(codec->dev, "ASoC: DAS Input Mux initialized to L*2 mode\n");
+}
+
+
 	return 0;
 }
 
